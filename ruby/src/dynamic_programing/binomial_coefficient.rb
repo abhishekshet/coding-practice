@@ -2,13 +2,7 @@ require 'benchmark'
 class BinomialCoefficient
     class << self
         def outcomes (n, k)
-            count = 1
-            if [0, n].include?(k)
-                return 1
-            else 
-                return(outcomes(n-1, k-1) + outcomes(n-1, k ))    
-            end 
-            count 
+            [0, n].include?(k) ? 1 :(outcomes(n-1, k-1) + outcomes(n-1, k ))    
         end 
 
         def benchmark_for(n,k)

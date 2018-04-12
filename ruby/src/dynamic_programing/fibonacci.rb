@@ -6,11 +6,8 @@ class Fibonacci
 
     class << self
         def recursive number
-            if [0,1].include? number  
-                return number
-            else
-                return recursive(number -1) + recursive(number - 2) 
-            end
+            return_val = [0,1].include?(number)  ? number : (recursive(number -1) + recursive(number - 2) )
+            return_val
         end
 
         def memoized number
@@ -25,15 +22,11 @@ class Fibonacci
         end 
 
         def tabulated number
-            tab_store = []    
-            tab_store[0] = 0
-            tab_store[1] = 1
-            i = 2
-            while(i <= number) do 
-                tab_store[i] = tab_store[i-1] + tab_store[i-2]
-                i +=1
+            tab_store = [0,1]    
+            (2..number).each do |index|
+                tab_store[index] = tab_store[index-1] + tab_store[index-2]
             end 
-          return  tab_store[number]
+            tab_store[number]
         end
         
         

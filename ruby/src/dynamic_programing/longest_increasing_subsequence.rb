@@ -5,7 +5,7 @@ class LongestIncreasingSubsequence
 
         def recursive(sequence, len)
 
-            return 1 if len == 1
+            return len if len == 1
             current_seq_len = 1
 
             (1...len).each do |index|
@@ -14,7 +14,6 @@ class LongestIncreasingSubsequence
                     current_seq_len = sub_seq_len + 1
                  end 
             end 
-
             return current_seq_len
         end 
 
@@ -28,9 +27,7 @@ class LongestIncreasingSubsequence
                     end 
                 end 
             end 
-
             store.max
-
         end  
         
         def benchmark_for_optimal_substructure sequence
