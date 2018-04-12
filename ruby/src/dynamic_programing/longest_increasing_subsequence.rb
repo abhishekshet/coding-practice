@@ -3,37 +3,34 @@ require 'benchmark'
 class LongestIncreasingSubsequence
     class << self
 
-        @@max_ref = 1
-
         def recursive(sequence, len)
-            return 1 if len == 1 
-    
-            max_lis_len = 1
+
+            return 1 if len == 1
+            current_seq_len = 1
 
             (1...len).each do |index|
-                sub_lis_len = recursive(sequence, index)
-                if (sequence[index-1] < sequence[len-1] && sub_lis_len + 1 > max_lis_len)
-                    max_lis_len = sub_lis_len + 1
-                end    
+                sub_seq_len = recursive(sequence, index)
+                 if(sub_seq_len + 1 > current_seq_len and sequence[index-1] < sequence[len-1])
+                    current_seq_len = sub_seq_len + 1
+                 end 
             end 
 
-            @@max_ref = max_lis_len if @@max_ref < max_lis_len
-                
-            return max_lis_len
+            return current_seq_len
         end 
-
 
         def optimal_substructure sequence
             store = Array.new(sequence.length, 1)
             
-            (1...sequence.length).each do |index|
-                (0...index).each do |j_index|
-                    if(sequence[j_index] < sequence[index] and store[j_index]+ 1 > store[index])
-                        store[index] = store[j_index] + 1
+            (1...sequence.length).each do |i_index|
+                (0...i_index).each do |j_index|
+                    if(sequence[j_index]< sequence[i_index] and store[j_index]+ 1 > store[i_index])
+                        store[i_index] = store[j_index] + 1
                     end 
                 end 
             end 
-            return store.max
+
+            store.max
+
         end  
         
         def benchmark_for_optimal_substructure sequence
