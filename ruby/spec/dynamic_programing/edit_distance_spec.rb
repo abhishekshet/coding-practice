@@ -42,11 +42,11 @@ RSpec.describe EditDistance do
 
     describe "benchmarking" do
         it "should print the benchmark" do
-            EditDistance.distance_store("Feels", "Feeals")
+            EditDistance.benchmark_for_distance_store("Feels", "Feeals")
         end
     
         it "should print the benchmark" do
-            EditDistance.distance_recursive("Feels", "Feeals")
+            EditDistance.benchmark_for_recursive("Feels", "Feeals")
         end
       end
 
