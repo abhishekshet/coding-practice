@@ -22,7 +22,6 @@ class ValidParentheses
                 break unless result
             end 
 
-            puts "RESULt: #{result}"
             (expression_stack.empty? and result)
         end
         
