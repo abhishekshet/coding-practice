@@ -3,7 +3,7 @@ require 'benchmark'
 class LongestCommonPrefix
     class << self
         
-        def longest_common_prefix_for arry
+        def using_vertical_comparison arry
             ret = ""
             return ret if arry.empty?
 
@@ -19,8 +19,29 @@ class LongestCommonPrefix
             ret
         end 
 
+        def using_horizontal_comparison arry
+            return "" if arry.empty?
+            lcp = arry[0]
+
+            (1...arry.length).each do |index|
+                lcp = recursive_method(lcp, arry[index])
+                break if lcp.empty?
+            end
+            lcp
+        end 
+
+        def recursive_method(str1, str2)
+            return "" if str1.empty? or str2.empty?
+            if str1[0] == str2[0]
+                return (str1[0] + recursive_method(str1[1..-1], str2[1..-1]))
+            else 
+                return ""    
+            end
+        end
+
         def benchmark_for arry
-            Benchmark.measure {longest_common_prefix_for(arry)}
+            puts Benchmark.measure {using_vertical_comparison(arry)}
+            puts Benchmark.measure {using_horizontal_comparison(arry)}
         end 
 
     end 

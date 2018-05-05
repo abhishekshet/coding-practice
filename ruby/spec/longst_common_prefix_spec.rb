@@ -3,10 +3,18 @@ require_relative '../src/longest_common_prefix'
 
 RSpec.describe LongestCommonPrefix do
     describe 'positive test cases' do 
-        it "should return correct results" do
-            expect(LongestCommonPrefix.longest_common_prefix_for(["flower","flow","flight"])).to eql("fl")
-            expect(LongestCommonPrefix.longest_common_prefix_for(["dog","racecar","car"])).to eql("")
+        it "should return correct results using vertical comparison" do
+            expect(LongestCommonPrefix.using_vertical_comparison(["flower","flow","flight"])).to eql("fl")
+            expect(LongestCommonPrefix.using_vertical_comparison(["dog","racecar","car"])).to eql("")
         end 
+
+
+        it "should return correct results using horizontal comparison" do
+            expect(LongestCommonPrefix.using_horizontal_comparison(["flower","flow","flight"])).to eql("fl")
+            expect(LongestCommonPrefix.using_horizontal_comparison(["dog","racecar","car"])).to eql("")
+        end 
+
+
     end 
 
     describe 'benchmark' do 
