@@ -3,10 +3,8 @@ require 'benchmark'
 class CountAndSay 
     class << self
         def value_at_position input
-            return "1" if input == 1
-            
             result = 1
-
+            return result if input == 1 
             (input-1).times do 
                 result = say_out(result)
             end 
@@ -22,6 +20,7 @@ class CountAndSay
                     count += 1
                 else
                     result = result.concat(count.to_s).concat(input[index])
+                    count = 1
                 end 
             end 
             result
